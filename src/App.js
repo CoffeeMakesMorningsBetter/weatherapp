@@ -4,7 +4,7 @@ import Display from './component/Display';
 import FiveDayForecast from './component/FiveDayForecast';
 import FiveDayIndividual from './component/FiveDayIndividual';
 import Map from './component/Map';
-import { responseChecker, createDate, cleanUpWeatherData } from './helper';
+import { responseChecker, cleanUpWeatherData } from './helper';
 import './App.css';
 
 class App extends Component {
@@ -100,7 +100,7 @@ class App extends Component {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
       <div className="App">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png"/>
+        <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms"/>
         <Searchbar searchCity={this.searchCity}/>
         {this.state.error && <h1>Nothing matches that search</h1>}
         <Display {...this.state} toggle={this.toggle}/>

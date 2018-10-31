@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { responseChecker } from '../helper'
+import { responseChecker } from '../helper';
+import './Searchbar.css';
 
 class Searchbar extends Component {
   constructor(props) {
