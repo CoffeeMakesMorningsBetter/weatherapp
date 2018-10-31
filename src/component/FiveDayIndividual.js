@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createDate } from '../helper';
+import './FiveDayIndividual.css';
 
 class FiveDayIndividual extends Component {
   update = () => (
@@ -8,11 +9,12 @@ class FiveDayIndividual extends Component {
   
   render() {
     return(
-      <div onClick={this.update}>
-        <div>{createDate(this.props.dt)}</div>
-        <div>{this.props.main}</div>
-        <div>Max Temp: {this.props.max_temp}</div>
-        <div>Min Temp: {this.props.min_temp}</div>
+      <div onClick={this.update} className="five-day-individual-container">
+        <div className="five-day-individual-day">{createDate(this.props.dt).weekday}</div>
+        <div className="five-day-individaul-temp">
+          <span>{this.props.max_temp} &deg;| {this.props.min_temp} &deg;</span>
+        </div>
+        
       </div>
     )
   }

@@ -1,0 +1,10 @@
+.five-day-container {
+  display: flex;
+  max-height: 120px;
+  min-height: 120px;
+  max-width: 610px;
+  min-width: 610px;
+  border: limegreen 1px solid;
+  padding: 5px;
+  justify-content: space-around;
+}

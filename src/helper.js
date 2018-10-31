@@ -29,7 +29,7 @@ function createDate(val) {
   let month = date.getMonth()
   let year = date.getFullYear()
   let weekday = map[date.getDay()]
-  return `${weekday}-${month}-${day}-${year}`
+  return {weekday, month, day, year}
 }
 
 function cleanUpWeatherData(arr) {

@@ -1,0 +1,71 @@
+.display-container {
+  display: flex;
+  width: 100%;
+  min-width: 610px;
+  max-width: 610px;
+  height: 30%;
+  max-height: 250px;
+  background: transparent;
+  border: 1px solid goldenrod;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
+}
+
+.display-info {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  flex-grow: 1;
+  /* background: url("https://ssl.gstatic.com/onebox/weather/64/sunny.png"); */
+}
+
+.display-info-city > h6,
+.display-info-city > h4 {
+  padding: 0 0.25rem;
+  color: lightgray;;
+  background: green;
+  margin: 0;
+}
+
+.display-container h6:last-child {
+  text-transform: capitalize;
+}
+
+.display-image {
+  display: flex;
+  min-height: 125px;
+  max-height: 125px;
+  padding: 0.25rem;
+  background: pink;
+  margin-top: 5px;
+}
+
+.display-image-container {
+  min-height: inherit;
+  max-height: inherit;
+  min-width: 125px;
+  max-width: 125px;
+  background: url("https://ssl.gstatic.com/onebox/weather/64/sunny.png");
+  background-size: cover;
+  border: 1px solid turquoise;
+}
+
+.display-image-temp {
+  min-height: inherit;
+  max-height: inherit;
+  min-width: 125px;
+  max-width: 125px;
+  border: 1px solid turquoise;
+  margin-left: 0.25rem;
+  font-size: 5rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.display-image-temp span {
+  text-align: center;
+}
+
+.toggle {
+  padding-top: 0.8rem;
+}
