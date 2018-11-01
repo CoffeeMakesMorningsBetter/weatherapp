@@ -9,10 +9,13 @@ body {
     font-size: 1.3em;
     justify-content: center;
     text-align: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 
 .App {
-    height: 100vh;
+    height: 75vh;
     transition: all .3s ease-in-out;
     width: 80vw;
     display: flex;

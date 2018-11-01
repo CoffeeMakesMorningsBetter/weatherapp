@@ -5,6 +5,7 @@
   max-width: 610px;
   height: 30%;
   max-height: 250px;
+  min-height: 210px;
   background: transparent;
   border: 1px solid goldenrod;
   margin: 0.5rem 0;
@@ -16,7 +17,6 @@
   flex-direction: column;
   text-align: start;
   flex-grow: 1;
-  /* background: url("https://ssl.gstatic.com/onebox/weather/64/sunny.png"); */
 }
 
 .display-info-city > h6,
@@ -45,7 +45,6 @@
   max-height: inherit;
   min-width: 125px;
   max-width: 125px;
-  background: url("https://ssl.gstatic.com/onebox/weather/64/sunny.png");
   background-size: cover;
   border: 1px solid turquoise;
 }
@@ -60,9 +59,6 @@
   font-size: 5rem;
   font-weight: 500;
   vertical-align: middle;
-}
-
-.display-image-temp span {
   text-align: center;
 }
 

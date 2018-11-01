@@ -3,15 +3,17 @@ import Searchbar from './component/Searchbar';
 import Display from './component/Display';
 import FiveDayForecast from './component/FiveDayForecast';
 import FiveDayIndividual from './component/FiveDayIndividual';
+import Modal from './component/Modal'
 import Map from './component/Map';
-import { responseChecker, cleanUpWeatherData } from './helper';
+import { responseChecker, cleanUpWeatherData, setWeather } from './helper';
 import './App.css';
+import './component/Modal.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchterm: "gilroy",
+      searchterm: "San Francisco",
       days: [],
       weatherCondition: "",
       temp: "",
@@ -19,33 +21,40 @@ class App extends Component {
       minTemp: "",
       date: "",
       error: false,
+      showModal: false,
       idx: 0,
-      unit: "imperial"
+      unit: "metric"
     }
     this.searchCity = this.searchCity.bind(this)
     this.updateDisplay = this.updateDisplay.bind(this)
     this.search = this.search.bind(this)
     this.toggle = this.toggle.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   componentDidMount() {
     this.search()
   }
 
+  toggleModal() {
+    this.setState({ error: !this.state.error })
+  }
+
   async search() {
     await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.searchterm}&APPID=fb1158dc7dfef5f0967ceac8f71ee3a6&units=${this.state.unit}`)
-    .then(responseChecker)
-    .then(res => this.setState({
-      searchterm: res.city.name,
-      days: cleanUpWeatherData(res.list),
-      temp: res.list[0].main.temp,
-      maxTemp: res.list[0].main.temp_min,
-      minTemp: res.list[0].main.temp_max,
-      weatherCondition: res.list[0].weather[0].description,
-      date: res.list[0].dt,
-      idx: 0
-    }))
-    .catch(error => this.setState({ error: true }))
+      .then(responseChecker)
+      .then(res => this.setState({
+        searchterm: res.city.name,
+        days: cleanUpWeatherData(res.list),
+        temp: res.list[0].main.temp,
+        maxTemp: res.list[0].main.temp_min,
+        minTemp: res.list[0].main.temp_max,
+        weatherCondition: res.list[0].weather[0].description,
+        url: setWeather(res.list[0].weather[0].id),
+        date: res.list[0].dt,
+        idx: 0
+      }))
+      .catch(error => this.setState({ error: true }))
   }
 
   updateDisplay(idx) {
@@ -54,6 +63,7 @@ class App extends Component {
       maxTemp: this.state.days[idx].temp_min,
       minTemp: this.state.days[idx].temp_max,
       weatherCondition: this.state.days[idx].description,
+      url: this.state.days[idx].url,
       date: this.state.days[idx].dt,
       idx
     })
@@ -69,12 +79,13 @@ class App extends Component {
         min_temp={temp.temp_min}
         key={temp.idx}
         idx={temp.idx}
+        url={temp.url}
       />
     )
   }
 
-  searchCity(res){
-    if(res > 399) {
+  searchCity(res) {
+    if (res > 399) {
       this.setState({ error: true })
     } else {
       this.setState({
@@ -84,6 +95,7 @@ class App extends Component {
         maxTemp: res.list[0].main.temp_min,
         minTemp: res.list[0].main.temp_max,
         weatherCondition: res.list[0].weather[0].description,
+        url: setWeather(res.list[0].weather[0].id),
         date: res.list[0].dt,
         error: false,
         idx: 0
@@ -92,19 +104,25 @@ class App extends Component {
   }
 
   toggle() {
-    let unit = this.state.unit === "imperial" ? "metric": "imperial"
-    this.setState({unit},this.search)
+    let unit = this.state.unit === "metric" ? "imperial" : "metric"
+    this.setState({ unit }, this.search)
   }
 
   render() {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
       <div className="App">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms"/>
-        <Searchbar searchCity={this.searchCity}/>
-        {this.state.error && <h1>Nothing matches that search</h1>}
-        <Display {...this.state} toggle={this.toggle}/>
-        <FiveDayForecast fiveday={fiveday}/>
+        <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms" />
+        <Searchbar searchCity={this.searchCity} />
+        <Display {...this.state} toggle={this.toggle} />
+        <FiveDayForecast fiveday={fiveday} />
+        {this.state.error ? (
+            <Modal>
+              <div onClick={this.toggleModal}>
+                <h1>Nothing Matches that search. Please enter a valid city name</h1>
+              </div>
+            </Modal>
+        ) : null}
       </div>
     );
   }

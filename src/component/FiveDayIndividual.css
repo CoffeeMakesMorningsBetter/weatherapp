@@ -6,9 +6,9 @@
   min-width: 110px;
   max-height: 110px;
   min-height: 110px;
-  background: url("https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png");
   background-size: cover;
   border: black solid 1px;
+  border-radius: 5px;
   font-size: 0.75rem;
   padding: 0.25rem;
 }
