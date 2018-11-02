@@ -112,17 +112,21 @@ class App extends Component {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
       <div className="App">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms" />
-        <Searchbar searchCity={this.searchCity} />
-        <Display {...this.state} toggle={this.toggle} />
-        <FiveDayForecast fiveday={fiveday} />
-        {this.state.error ? (
+        <div className="cloud"><img src="http://pngimg.com/uploads/cloud/cloud_PNG32.png"></img></div>
+        <div className="search">
+          <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms" />
+          <Searchbar searchCity={this.searchCity} />
+          <Display {...this.state} toggle={this.toggle} />
+          <FiveDayForecast fiveday={fiveday} />
+          {this.state.error ? (
             <Modal>
               <div onClick={this.toggleModal}>
                 <h1>Nothing Matches that search. Please enter a valid city name</h1>
               </div>
             </Modal>
-        ) : null}
+          ) : null}
+        </div>
+
       </div>
     );
   }

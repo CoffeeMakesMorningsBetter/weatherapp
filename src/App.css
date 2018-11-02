@@ -18,9 +18,34 @@ body {
     height: 75vh;
     transition: all .3s ease-in-out;
     width: 80vw;
+    max-width: 800px;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: lightblue;
+    border-radius: 5px;
+    position: relative;
+}
+
+.cloud {
+    position: absolute;
+    width: 100%;
+    left: 20px;
+    animation: cloudOne infinite 30s linear;
+    z-index: 2;
+}
+
+@keyframes cloudOne {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.search {
+    z-index: 10;
 }
