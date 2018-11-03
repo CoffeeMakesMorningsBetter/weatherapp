@@ -4,8 +4,7 @@ import Display from './component/Display';
 import FiveDayForecast from './component/FiveDayForecast';
 import FiveDayIndividual from './component/FiveDayIndividual';
 import Modal from './component/Modal'
-import Map from './component/Map';
-import { responseChecker, cleanUpWeatherData, setWeather } from './helper';
+import { responseChecker, cleanUpWeatherData, setWeather, setBackground } from './helper';
 import './App.css';
 import './component/Modal.css';
 
@@ -23,7 +22,8 @@ class App extends Component {
       error: false,
       showModal: false,
       idx: 0,
-      unit: "metric"
+      unit: "metric",
+      weather: []
     }
     this.searchCity = this.searchCity.bind(this)
     this.updateDisplay = this.updateDisplay.bind(this)
@@ -51,7 +51,9 @@ class App extends Component {
         minTemp: res.list[0].main.temp_max,
         weatherCondition: res.list[0].weather[0].description,
         url: setWeather(res.list[0].weather[0].id),
+        id: res.list[0].weather[0].id,
         date: res.list[0].dt,
+        weather: setBackground(res.list[0].weather[0].id),
         idx: 0
       }))
       .catch(error => this.setState({ error: true }))
@@ -65,6 +67,8 @@ class App extends Component {
       weatherCondition: this.state.days[idx].description,
       url: this.state.days[idx].url,
       date: this.state.days[idx].dt,
+      id: this.state.days[idx].id,
+      weather: setBackground(this.state.days[idx].id),
       idx
     })
   }
@@ -96,9 +100,11 @@ class App extends Component {
         minTemp: res.list[0].main.temp_max,
         weatherCondition: res.list[0].weather[0].description,
         url: setWeather(res.list[0].weather[0].id),
+        id: res.list[0].weather[0].id,
         date: res.list[0].dt,
-        error: false,
-        idx: 0
+        weather: setBackground(res.list[0].weather[0].id),
+        idx: 0,
+        error: false
       })
     }
   }
@@ -112,7 +118,8 @@ class App extends Component {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
       <div className="App">
-        <div className="cloud"><img src="http://pngimg.com/uploads/cloud/cloud_PNG32.png"></img></div>
+        <div className={(this.state.weather.length > 1)? "cloud": "rain"}><img src={(this.state.weather.length > 1)?"http://pngimg.com/uploads/cloud/cloud_PNG32.png": null}></img></div>
+        <div className="cloud1"><img src="http://pngimg.com/uploads/cloud/cloud_PNG24.png"></img></div>
         <div className="search">
           <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms" />
           <Searchbar searchCity={this.searchCity} />
@@ -135,3 +142,5 @@ class App extends Component {
 
 
 export default App;
+
+

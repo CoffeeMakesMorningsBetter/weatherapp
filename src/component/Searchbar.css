@@ -2,4 +2,6 @@ input {
   width: 600px;
   padding: 0.25rem;
   background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
 }

@@ -38,7 +38,7 @@ function cleanUpWeatherData(arr) {
     let { dt } = day 
     let { temp, temp_max, temp_min } = day.main
     let { description, main, id } = day.weather[0]
-    return { dt, temp, temp_max, temp_min, description, main, idx:idx, url: setWeather(id) }
+    return { dt, temp, temp_max, temp_min, description, main, idx:idx, url: setWeather(id), id }
   })
 }
 
@@ -52,9 +52,15 @@ function setWeather(code) {
   if (code > 800) return "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" // clouds
 }
 
+function setBackground(code) {
+  if(code > 199 && code < 600) return ["http://pngimg.com/uploads/rain/rain_PNG13459.png"]
+  if(code > 599) return ["http://pngimg.com/uploads/cloud/cloud_PNG32.png", "http://pngimg.com/uploads/cloud/cloud_PNG24.png"]
+}
+
 export {
   responseChecker,
   createDate,
   cleanUpWeatherData,
-  setWeather
+  setWeather,
+  setBackground
 }
