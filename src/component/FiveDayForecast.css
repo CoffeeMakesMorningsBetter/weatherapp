@@ -1,10 +1,9 @@
 .five-day-container {
   display: flex;
-  max-height: 120px;
-  min-height: 120px;
-  max-width: 610px;
-  min-width: 610px;
-  /* border: limegreen 1px solid; */
+  max-height: 160px;
+  min-height: 160px;
+  max-width: 615px;
+  min-width: 615px;
   padding: 5px;
   justify-content: space-around;
 }

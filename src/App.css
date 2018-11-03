@@ -2,7 +2,7 @@ html,
 body {
     box-sizing: border-box;
     align-items: center;
-    background-color: #f8f8f8 !important;
+    background: linear-gradient(rgb(62,97,209), rgb(103, 171, 217));
     color: #333;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
@@ -25,7 +25,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: lightblue;
     border-radius: 5px;
 }
 

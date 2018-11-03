@@ -2,13 +2,31 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-height: 150px;
+  min-height: 150px;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+}
+
+.five-day-individual-container, .five-day-individual-image {
   max-width: 110px;
   min-width: 110px;
+}
+
+.five-day-individual-container:hover {
+  cursor: pointer;
+  border: 2px rgb(70, 105, 214) solid;
+  opacity: 0.9;
+  border-radius: 5px;
+}
+
+.five-day-individual-day, .five-day-individaul-temp span  {
+  font-weight: 800;
+}
+
+.five-day-individual-image {
   max-height: 110px;
   min-height: 110px;
   background-size: cover;
-  border: black solid 1px;
-  border-radius: 5px;
-  font-size: 0.75rem;
-  padding: 0.25rem;
+  opacity: 0.8;
 }

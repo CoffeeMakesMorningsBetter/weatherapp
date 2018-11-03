@@ -13,6 +13,7 @@ class App extends Component {
     super(props)
     this.state = {
       searchterm: "San Francisco",
+      country: "",
       days: [],
       weatherCondition: "",
       temp: "",
@@ -20,9 +21,8 @@ class App extends Component {
       minTemp: "",
       date: "",
       error: false,
-      showModal: false,
       idx: 0,
-      unit: "metric",
+      unit: "imperial",
       weather: []
     }
     this.searchCity = this.searchCity.bind(this)
@@ -41,10 +41,11 @@ class App extends Component {
   }
 
   async search() {
-    await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.searchterm}&APPID=fb1158dc7dfef5f0967ceac8f71ee3a6&units=${this.state.unit}`)
+    await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.state.searchterm}&APPID=fb1158dc7dfef5f0967ceac8f71ee3a6&units=${this.state.unit}&cnt=41`)
       .then(responseChecker)
       .then(res => this.setState({
         searchterm: res.city.name,
+        country: res.city.country,
         days: cleanUpWeatherData(res.list),
         temp: res.list[0].main.temp,
         maxTemp: res.list[0].main.temp_min,
@@ -94,6 +95,7 @@ class App extends Component {
     } else {
       this.setState({
         searchterm: res.city.name,
+        country: res.city.country,
         days: cleanUpWeatherData(res.list),
         temp: res.list[0].main.temp,
         maxTemp: res.list[0].main.temp_min,
@@ -121,14 +123,14 @@ class App extends Component {
         <div className={(this.state.weather.length > 1)? "cloud": "rain"}><img src={(this.state.weather.length > 1)?"http://pngimg.com/uploads/cloud/cloud_PNG32.png": null}></img></div>
         <div className="cloud1"><img src="http://pngimg.com/uploads/cloud/cloud_PNG24.png"></img></div>
         <div className="search">
-          <img src="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" alt="storms" />
-          <Searchbar searchCity={this.searchCity} />
+          <img src={this.state.url} alt="storms" />
+          <Searchbar searchCity={this.searchCity} unit={this.state.unit}/>
           <Display {...this.state} toggle={this.toggle} />
           <FiveDayForecast fiveday={fiveday} />
           {this.state.error ? (
             <Modal>
               <div onClick={this.toggleModal}>
-                <h1>Nothing Matches that search. Please enter a valid city name</h1>
+                <h1>Nothing matches that search. Please enter a valid city name</h1>
               </div>
             </Modal>
           ) : null}

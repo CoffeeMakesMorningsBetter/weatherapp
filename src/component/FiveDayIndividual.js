@@ -9,10 +9,11 @@ class FiveDayIndividual extends Component {
   
   render() {
     return(
-      <div onClick={this.update} className="five-day-individual-container" style={{backgroundImage: `url(${this.props.url})`}}>
+      <div onClick={this.update} className="five-day-individual-container">
         <div className="five-day-individual-day">{createDate(this.props.dt).weekday}</div>
+        <div className="five-day-individual-image" style={{backgroundImage: `url(${this.props.url})`}}></div>
         <div className="five-day-individaul-temp">
-          <span>{this.props.max_temp} &deg;| {this.props.min_temp} &deg;</span>
+          <span>{Math.floor(this.props.max_temp)} &deg;| {Math.floor(this.props.min_temp)} &deg;</span>
         </div>
         
       </div>

@@ -4,4 +4,9 @@ input {
   background: transparent;
   font-size: 1rem;
   font-weight: 600;
+  border: none;
+  border-bottom: white 1.5px solid;
+  color: rgba(0, 0, 0, 0.6);
+  outline: none;
+  caret-color: white;
 }

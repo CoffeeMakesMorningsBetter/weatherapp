@@ -7,8 +7,7 @@ function responseChecker(response) {
 
 function get5Day(arr) {
   let fiveday = []
-  for(let i = 0; i < 25; i+=8) {
-    console.log(i)
+  for(let i = 0; i < 33; i+=8) {
     fiveday.push(arr[i])
   }
   return fiveday
