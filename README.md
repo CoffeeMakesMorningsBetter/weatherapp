@@ -13,6 +13,7 @@ A simple weather app using [react](https://reactjs.org/) and [lodash](https://lo
 - toggle between fahrenheit and celsius
 - make background change based on weather
 - make api calls without a submit button
+- use react portal as a modal
 
 API Documentation [here](https://openweathermap.org/forecast5)
 
@@ -30,3 +31,4 @@ npm start or yarn start
 
 ## Future Add On's
 - Google Maps (would have added if google still gave out free API keys to google maps without a credit card)
+- Create a seperate branch with a [redux](https://redux.js.org/) version
