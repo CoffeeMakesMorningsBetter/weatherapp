@@ -35,9 +35,13 @@ body {
     background: linear-gradient(rgb(62,97,209), rgb(103, 171, 217));
 }
 
-.App-cloudy {
+.App-rainy {
     background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255,255,255,0.30) 0%, rgba(0,0,0,0.30) 100%);
     background-blend-mode: screen;
+}
+
+.App-cloudy {
+    background-image: linear-gradient(#d7d2cc, #304352);
 }
 
 .search {

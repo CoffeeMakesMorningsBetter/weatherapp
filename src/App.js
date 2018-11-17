@@ -119,7 +119,7 @@ class App extends Component {
   render() {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
-      <div className={(this.state.weather.length === 1)? "App App-cloudy": (this.state.weather.length === 2)? "App App-snowy": "App App-sunny"}>
+      <div className={(this.state.weather.length === 0)? "App App-cloudy" :(this.state.weather.length === 1)? "App App-rainy": (this.state.weather.length === 2)? "App App-snowy": "App App-sunny"}>
         <div className={(this.state.weather.length === 1)? "rain": (this.state.weather.length === 2)? "snow snow1": "cloud"}><img src={(this.state.weather.length > 2)?"http://pngimg.com/uploads/cloud/cloud_PNG32.png": null} alt=""></img></div>
         <div className={(this.state.weather.length === 2)? "snow snow2": "hide"}></div>
         <div className={(this.state.weather.length === 2)? "snow snow3": "hide"}></div>
