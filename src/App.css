@@ -2,7 +2,6 @@ html,
 body {
     box-sizing: border-box;
     align-items: center;
-    background: linear-gradient(rgb(62,97,209), rgb(103, 171, 217));
     color: #333;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
@@ -13,19 +12,32 @@ body {
     height: 100vh;
     width: 100vw;
     position: relative;
+    overflow: hidden;
+    background: cover;
 }
 
 .App {
-    height: 75vh;
+    height: 100vh;
     transition: all .3s ease-in-out;
-    width: 80vw;
-    max-width: 800px;
-    min-height: 600px;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+}
+
+.App-snowy {
+    background: linear-gradient(#6a85b6, #bac8e0);
+}
+
+.App-sunny {
+    background: linear-gradient(rgb(62,97,209), rgb(103, 171, 217));
+}
+
+.App-cloudy {
+    background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255,255,255,0.30) 0%, rgba(0,0,0,0.30) 100%);
+    background-blend-mode: screen;
 }
 
 .search {
@@ -69,8 +81,10 @@ body {
 
 
 .rain {
-    height: 100%;
-    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     position: absolute;
     background: url("http://pngimg.com/uploads/rain/rain_PNG13468.png");
     animation: rain 0.75s infinite linear;
@@ -83,6 +97,68 @@ body {
     }
 
     100% {
-        background-position: 20% 100%;
+        background-position: 30% 100%;
     }
 }
+
+.snow {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url("./public/snowflakes2.png");
+    z-index: 2;
+}
+
+.snow1 {
+    animation: snow1 15s infinite linear;
+}
+
+.snow2 {
+    animation: snow2 10s infinite linear;
+}
+
+.snow3 {
+    animation: snow3 20s infinite linear;
+}
+
+@keyframes snow1 {
+    0% {
+        background-position: 0 0;
+        filter: blur(2px);
+    }
+
+    100% {
+        background-position: 1920px 1080px; 
+        filter: blur(2px);
+    }
+}
+
+@keyframes snow2 {
+    0% {
+        background-position: 5px 5px;
+        filter: blur(2px);
+    }
+
+    100% {
+        background-position: 1920px 1080px; 
+        filter: blur(2px);
+        /* set size of pic so you don't get flash: https://www.youtube.com/watch?v=6x27arXNafM*/
+    }
+}
+
+@keyframes snow3 {
+    0% {
+        background-position: 0 0;
+        transform: scale(2);
+    }
+
+    100% {
+        background-position: 0 1080px; 
+        transform: scale(2);
+    }
+}
+
+.hide {
+    display: none;
+}
+

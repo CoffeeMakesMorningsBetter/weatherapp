@@ -119,9 +119,11 @@ class App extends Component {
   render() {
     let fiveday = this.state.days.map(this.renderFiveDay)
     return (
-      <div className="App">
-        <div className={(this.state.weather.length > 1)? "cloud": "rain"}><img src={(this.state.weather.length > 1)?"http://pngimg.com/uploads/cloud/cloud_PNG32.png": null}></img></div>
-        <div className="cloud1"><img src="http://pngimg.com/uploads/cloud/cloud_PNG24.png"></img></div>
+      <div className={(this.state.weather.length === 1)? "App App-cloudy": (this.state.weather.length === 2)? "App App-snowy": "App App-sunny"}>
+        <div className={(this.state.weather.length === 1)? "rain": (this.state.weather.length === 2)? "snow snow1": "cloud"}><img src={(this.state.weather.length > 2)?"http://pngimg.com/uploads/cloud/cloud_PNG32.png": null} alt=""></img></div>
+        <div className={(this.state.weather.length === 2)? "snow snow2": "hide"}></div>
+        <div className={(this.state.weather.length === 2)? "snow snow3": "hide"}></div>
+        <div className="cloud1"><img src="http://pngimg.com/uploads/cloud/cloud_PNG24.png" alt=""></img></div>
         <div className="search">
           <img src={this.state.url} alt="storms" />
           <Searchbar searchCity={this.searchCity} unit={this.state.unit}/>
@@ -144,5 +146,4 @@ class App extends Component {
 
 
 export default App;
-
 

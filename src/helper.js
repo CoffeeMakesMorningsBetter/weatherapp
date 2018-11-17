@@ -44,16 +44,17 @@ function cleanUpWeatherData(arr) {
 function setWeather(code) {
   if (code > 199 && code < 300) return "https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" // thunder
   if (code > 299 && code < 400) return "https://ssl.gstatic.com/onebox/weather/48/rain_light.png" // drizzle
-  if (code > 399 && code < 500) return "https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" // rain
-  if (code > 499 && code < 600) return "https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png" // snow
-  if (code > 599 && code < 700) return // atmosphiric
+  if (code > 399 && code < 501) return "https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" // rain
+  if (code > 500 && code < 601) return "https://ssl.gstatic.com/onebox/weather/64/snow_light.png" // snow
+  if (code > 599 && code < 700) return "https://ssl.gstatic.com/onebox/weather/64/fog.png"// atmosphiric
   if (code === 800) return "https://ssl.gstatic.com/onebox/weather/48/sunny.png" // clear
   if (code > 800) return "https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" // clouds
 }
 
 function setBackground(code) {
-  if(code > 199 && code < 600) return ["http://pngimg.com/uploads/rain/rain_PNG13459.png"]
-  if(code > 599) return ["http://pngimg.com/uploads/cloud/cloud_PNG32.png", "http://pngimg.com/uploads/cloud/cloud_PNG24.png"]
+  if (code > 199 && code < 501) return ["http://pngimg.com/uploads/rain/rain_PNG13459.png"]
+  if (code > 500 && code < 601) return ["https://pngtree.com/freepng/transparent-snowflake-material_3475730.html", null]
+  if (code > 599) return ["http://pngimg.com/uploads/cloud/cloud_PNG32.png", "http://pngimg.com/uploads/cloud/cloud_PNG24.png",null]
 }
 
 export {
